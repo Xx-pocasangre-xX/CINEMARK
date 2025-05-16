@@ -1,6 +1,6 @@
 import {v2 as cloudinary} from 'cloudinary';
 import peliculasModel from "../models/peliculas.js";
-import { config } from "dotenv";
+import { config } from "../config.js";
 
 cloudinary.config({
   cloud_name: config.cloudinary.cloud_name,
