@@ -8,24 +8,24 @@ import { config } from "../config.js";
 const loginController = {};
 
 loginController.login = async (req, res) => {
-  const { email, password } = req.body;
+  const { correo, contrasena } = req.body;
 
   try {
     let userFound; // Guardar el usuario encontrado
     let userType; // Guardar el tipo de usuario
 
     // Admin, Empleados y Clientes
-    if (email === config.admin.email && password === config.admin.password) {
+    if (correo === config.admin.email && contrasena === config.admin.password) {
       userType = "admin";
       userFound = { _id: "admin" };
     } else {
       //Empleado
-      userFound = await empleadoModel.findOne({ email });
+      userFound = await empleadoModel.findOne({ correo });
       userType = "employee";
 
       //Cliente
       if (!userFound) {
-        userFound = await clienteModel.findOne({ email });
+        userFound = await clienteModel.findOne({ correo });
         userType = "client";
       }
     }
@@ -37,7 +37,7 @@ loginController.login = async (req, res) => {
 
     // Desincriptar la contraseña si no es admin
     if (userType !== "admin") {
-      const isMatch = bcryptjs.compare(password, userFound.password);
+      const isMatch = await bcryptjs.compare(contrasena, userFound.password);
       if (!isMatch) {
         res.json({ message: "Invalid password" });
       }

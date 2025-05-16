@@ -5,14 +5,14 @@
         contrasena,
         telefono,
         direccion,
-        DUI
+        dui
 */
 
 import { Schema, model } from "mongoose";
 
 const clientesSchema = new Schema(
   {
-    name: {
+    nombre: {
       type: String,
       require: true,
     },

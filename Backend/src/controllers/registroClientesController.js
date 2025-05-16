@@ -17,7 +17,7 @@ registroClienteController.register = async (req, res) => {
         contrasena,
         telefono,
         direccion,
-        DUI,
+        dui,
   } = req.body;
 
   try {
@@ -33,11 +33,12 @@ registroClienteController.register = async (req, res) => {
     //3- Guardamos al nuevo cliente
     const newClient = new clientesModel({
       nombre,
+        nombre,
         correo,
         contrasena: passwordHash,
         telefono,
         direccion,
-        DUI: DUI || null,
+        dui: dui || null,
     });
 
     await newClient.save();

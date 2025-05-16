@@ -43,7 +43,7 @@ const peliculasSchema = new Schema(
       require: true,
     },
     imagen: {
-      type: Date,
+      type: String,
       require: true,
     }
   },

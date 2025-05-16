@@ -6,12 +6,12 @@ const router = express.Router();
 
 router
   .route("/")
-  .get(peliculasController.getPelicula)
-  .post(peliculasController.createEmpleado);
+  .get(peliculasController.getPeliculas)
+  .post(peliculasController.createPeliculas);
 
 router
   .route("/:id")
-  .put(peliculasController.updatePelicula)
-  .delete(peliculasController.deletePelicula);
+  .put(peliculasController.updatePeliculas)
+  .delete(peliculasController.deletePeliculas);
 
 export default router;

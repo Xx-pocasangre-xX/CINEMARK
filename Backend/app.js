@@ -19,15 +19,15 @@ app.use(express.json());
 app.use(cookieParser());
 
 // Definir las rutas de las funciones que tendrá la página web
-app.use("/api/customers", clientesRoutes);
-app.use("/api/employee", empleadosRoutes);
-app.use("/api/branches", peliculasRoutes);
+app.use("/api/clientes", clientesRoutes);
+app.use("/api/empleados", empleadosRoutes);
+app.use("/api/peliculas", peliculasRoutes);
 
-app.use("/api/registerEmployee", registroEmpleadosRoutes);
+app.use("/api/registroEmpleados", registroEmpleadosRoutes);
 app.use("/api/login", loginRoute);
 app.use("/api/logout", logoutRoute);
 
-app.use("/api/registerClients", registroClientesRoutes);
+app.use("/api/registroClientes", registroClientesRoutes);
 
 app.use("/api/RecoveryPassword", recoveryPasswordRoutes);
 
