@@ -15,13 +15,13 @@ clientesController.createCliente = async (req, res) => {
         contrasena,
         telefono,
         direccion,
-        DUI} = req.body;
+        dui} = req.body;
   const newCliente= new clientesModel({ nombre,
         correo,
         contrasena,
         telefono,
         direccion,
-        DUI});
+        dui});
   await newCliente.save();
   res.json({ message: "cliente save" });
 };
@@ -43,7 +43,7 @@ clientesController.updateCliente = async (req, res) => {
         contrasena,
         telefono,
         direccion,
-        DUI} = req.body;
+        dui} = req.body;
   // Actualizo
   await clientesModel.findByIdAndUpdate(
     req.params.id,
@@ -53,7 +53,7 @@ clientesController.updateCliente = async (req, res) => {
         contrasena,
         telefono,
         direccion,
-        DUI
+        dui
     },
     { new: true }
   );

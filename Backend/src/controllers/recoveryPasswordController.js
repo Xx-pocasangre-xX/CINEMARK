@@ -132,7 +132,7 @@ recoveryPasswordController.newPassword = async (req, res) => {
     } else if (userType === "employee") {
       updatedUser = await empleadosModel.findOneAndUpdate(
         { correo },
-        { password: hashedPassword },
+        { contrasena: hashedPassword },
         { new: true }
       );
     }
