@@ -18,7 +18,7 @@ empleadosController.createEmpleado = async (req, res) => {
         puesto,
         fecha_contratacion,
         salario,
-        DUI} = req.body;
+        dui} = req.body;
   const newEmpleado= new empleadosModel({ nombre,
         correo,
         contrasena,
@@ -27,7 +27,7 @@ empleadosController.createEmpleado = async (req, res) => {
         puesto,
         fecha_contratacion,
         salario,
-        DUI});
+        dui});
   await newEmpleado.save();
   res.json({ message: "empleado save" });
 };
@@ -52,7 +52,7 @@ empleadosController.updateEmpleado = async (req, res) => {
         puesto,
         fecha_contratacion,
         salario,
-        DUI} = req.body;
+        dui} = req.body;
   // Actualizo
   await empleadosModel.findByIdAndUpdate(
     req.params.id,
@@ -65,7 +65,7 @@ empleadosController.updateEmpleado = async (req, res) => {
         puesto,
         fecha_contratacion,
         salario,
-        DUI
+        dui
     },
     { new: true }
   );

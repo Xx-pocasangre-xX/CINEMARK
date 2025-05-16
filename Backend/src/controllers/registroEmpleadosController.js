@@ -19,7 +19,7 @@ registroEmpleadosController.register = async (req, res) => {
         puesto,
         fecha_contratacion,
         salario,
-        DUI
+        dui
   } = req.body;
 
   try {
@@ -42,7 +42,7 @@ registroEmpleadosController.register = async (req, res) => {
         puesto,
         fecha_contratacion,
         salario,
-        DUI
+        dui
     });
 
     await newEmployee.save();

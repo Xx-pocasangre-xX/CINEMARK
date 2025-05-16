@@ -11,18 +11,18 @@ import { config } from "../config.js";
 const recoveryPasswordController = {};
 
 recoveryPasswordController.requestCode = async (req, res) => {
-  const { email } = req.body;
+  const { correo } = req.body;
 
   try {
     let userFound;
     let userType;
 
     //Verificamos que el usuario exista
-    userFound = await clientesModel.findOne({ email });
+    userFound = await clientesModel.findOne({ correo });
     if (userFound) {
       userType = "client";
     } else {
-      userFound = await empleadosModel.findOne({ email });
+      userFound = await empleadosModel.findOne({ correo });
       if (userFound) {
         userType = "employee";
       }
@@ -38,7 +38,7 @@ recoveryPasswordController.requestCode = async (req, res) => {
     // Guardar todo en un token
     const token = jsonwebtoken.sign(
       //1-¿que voy a guardar?
-      { email, code, userType, verified: false },
+      { correo, code, userType, verified: false },
       //2- secret key
       config.JWT.secret,
       //3-¿Cuando expira?
@@ -50,7 +50,7 @@ recoveryPasswordController.requestCode = async (req, res) => {
 
     //ULTIMO PASO - Enviar el correo
     await sendEmail(
-      email,
+      correo,
       "Password recovery code",
       `Your verification code is: ${code}`,
       HTMLRecoveryEmail(code)
@@ -81,7 +81,7 @@ recoveryPasswordController.verifyCode = async (req, res) => {
     const newToken = jsonwebtoken.sign(
       //1- ¿Que vamos a guardar?
       {
-        email: decoded.email,
+        correo: decoded.correo,
         code: decoded.code,
         userType: decoded.userType,
         verified: true,
@@ -115,7 +115,7 @@ recoveryPasswordController.newPassword = async (req, res) => {
     }
 
     // Extraer el email y el userType
-    const { email, userType } = decoded;
+    const { correo, userType } = decoded;
 
     // Encriptar la contraseña
     const hashedPassword = await bcryptjs.hash(newPassword, 10);
@@ -125,13 +125,13 @@ recoveryPasswordController.newPassword = async (req, res) => {
     // ULTIMO PASO - Actualizar la contraseña
     if (userType === "client") {
       updatedUser = await clientesModel.findOneAndUpdate(
-        { email },
-        { password: hashedPassword },
+        { correo },
+        { contrasena: hashedPassword },
         { new: true }
       );
     } else if (userType === "employee") {
       updatedUser = await empleadosModel.findOneAndUpdate(
-        { email },
+        { correo },
         { password: hashedPassword },
         { new: true }
       );

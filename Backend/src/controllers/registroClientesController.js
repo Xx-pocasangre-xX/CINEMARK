@@ -33,7 +33,6 @@ registroClienteController.register = async (req, res) => {
     //3- Guardamos al nuevo cliente
     const newClient = new clientesModel({
       nombre,
-        nombre,
         correo,
         contrasena: passwordHash,
         telefono,

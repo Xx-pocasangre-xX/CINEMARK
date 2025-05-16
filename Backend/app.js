@@ -29,7 +29,7 @@ app.use("/api/logout", logoutRoute);
 
 app.use("/api/registroClientes", registroClientesRoutes);
 
-app.use("/api/RecoveryPassword", recoveryPasswordRoutes);
+app.use("/api/recoveryPassword", recoveryPasswordRoutes);
 
 
 // Exporto la constante para poder usar express en otros archivos

@@ -8,14 +8,14 @@
         puesto,
         fecha_contratacion,
         salario,
-        DUI
+        dui
 */
 
 import { Schema, model } from "mongoose";
 
 const empleadosSchema = new Schema(
   {
-    name: {
+    nombre: {
       type: String,
       require: true,
     },

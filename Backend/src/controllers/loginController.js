@@ -37,7 +37,7 @@ loginController.login = async (req, res) => {
 
     // Desincriptar la contraseña si no es admin
     if (userType !== "admin") {
-      const isMatch = await bcryptjs.compare(contrasena, userFound.password);
+      const isMatch = await bcryptjs.compare(contrasena, userFound.contrasena);
       if (!isMatch) {
         res.json({ message: "Invalid password" });
       }
